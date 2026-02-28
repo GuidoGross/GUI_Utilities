@@ -1,6 +1,6 @@
 [project]
 name = "gui_utilities"
-version = "1.7.0"
+version = "1.7.1"
 description = "Personal-use graphical utilities library"
 readme = "README.md"
 license = {file = "LICENSE"}

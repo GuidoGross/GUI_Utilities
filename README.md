@@ -1,6 +1,7 @@
 # GUI Utilities
 
-Personal-use graphical utilities library providing styled PyQt6 interaction, structured menus, robust input validation, formatting helpers, and Spanish-oriented user experience.
+Personal-use graphical utilities library providing styled PyQt6 interaction, structured menus, robust 
+input validation, formatting helpers, and Spanish-oriented user experience.
 
 /--------------------------------------------------------------------------------------------------------/
 
@@ -66,7 +67,8 @@ Tools for building UI elements and structures in graphical applications:
 
 - check_box(): creates customized checkboxes with styled indicators.
 
-- table(): creates personalized tables with easy introduction of fully-styled columns and rows (with responsive resizing).
+- table(): creates personalized tables with easy introduction of fully-styled columns and rows (with 
+responsive resizing).
 
 /--------------------------------------------------------------------------------------------------------/
 
@@ -96,13 +98,15 @@ Interactive validation utilities using UI dialogs for user input.
 
 - validate_double(): validates decimal numbers (uses Continental European numeric format).
 
-- validate_datetime(): validates date and time input (uses Continental European date format with 24-hour time) with selectable year, time and second inclusion.
+- validate_datetime(): validates date and time input (uses Continental European date format with 24-hour 
+time) with selectable year, time and second inclusion.
 
 - validate_id(): validates Argentinian national ID numbers.
 
 - validate_cellphone_number(): validates cellphone numbers (uses Argentinian format).
 
-- validate_email(): validates e-mail addresses using an official TLDs list (from IANA's website) or syntax fallback (in case of not having an internet connection or a locally imported list of TLDs).
+- validate_email(): validates e-mail addresses using an official TLDs list (from IANA's website) or syntax 
+fallback (in case of not having an internet connection or a locally imported list of TLDs).
 
 /--------------------------------------------------------------------------------------------------------/
 
@@ -112,13 +116,15 @@ Utilities for applying consistent formatting:
 
 - decimal_format(): applies Continental European numeric formatting.
 
-- datetime_format(): formats datetime objects (uses Continental European date format with 24-hour time) with automatic or custom year, time and second inclusion.
+- datetime_format(): formats datetime objects (uses Continental European date format with 24-hour time) 
+with automatic or custom year, time and second inclusion.
 
 - id_format(): formats Argentinian national ID numbers.
 
 - cellphone_number_format(): formats cellphone numbers (uses Argentinian format).
 
-- html_expression_format(): formats plain-text mathematical expressions (like fractions or superscripts) into HTML code for rich text rendering.
+- html_expression_format(): formats plain-text mathematical expressions (like fractions or superscripts) 
+into HTML code for rich text rendering.
 
 - convert_to_double(): converts string numbers (with Continental European format) into Python floats.
 
