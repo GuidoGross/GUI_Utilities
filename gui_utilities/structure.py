@@ -3,7 +3,7 @@ from PyQt6.QtWidgets import (QVBoxLayout, QHBoxLayout, QLabel, QPushButton, QLin
     QComboBox, QToolButton, QWidgetAction, QCheckBox, QScrollArea, QWidget, QSizePolicy,
     QApplication, QStyle, QStyledItemDelegate, QTableWidget, QHeaderView)
 from PyQt6.QtGui import QIcon, QTextDocument
-from .system import _get_alignment_flag, _resource_path
+from .system import _get_alignment_flag, get_resources_path
 from .format import html_expression_format
 
 def menu(
@@ -391,10 +391,10 @@ def text_box(
     math_expression = False,
     parent = None
 ):
-    if show_text_icon_url is None: show_text_icon_url = _resource_path("icons/show_text_icon.png")
-    if hide_text_icon_url is None: hide_text_icon_url = _resource_path("icons/hide_text_icon.png")
-    if focused_show_text_icon_url is None: focused_show_text_icon_url = _resource_path("icons/focused_show_text_icon.png")
-    if focused_hide_text_icon_url is None: focused_hide_text_icon_url = _resource_path("icons/focused_hide_text_icon.png")
+    if show_text_icon_url is None: show_text_icon_url = get_resources_path("icons/show_text_icon.png")
+    if hide_text_icon_url is None: hide_text_icon_url = get_resources_path("icons/hide_text_icon.png")
+    if focused_show_text_icon_url is None: focused_show_text_icon_url = get_resources_path("icons/focused_show_text_icon.png")
+    if focused_hide_text_icon_url is None: focused_hide_text_icon_url = get_resources_path("icons/focused_hide_text_icon.png")
     txt_box = QLineEdit(parent)
     left_padding_value = left_padding if left_padding is not None else padding
     top_padding_value = top_padding if top_padding is not None else padding

@@ -3,11 +3,6 @@ from PyQt6.QtWidgets import QApplication
 import os
 import sys
 
-def _resource_path(relative_path):
-    if hasattr(sys, "_MEIPASS"): return os.path.join(sys._MEIPASS, relative_path)
-    base_path = os.path.dirname(__file__)
-    return os.path.join(base_path, relative_path)
-
 def _get_alignment_flag(aligment):
     if not isinstance(aligment, str): return aligment
     alignment_map = {
@@ -31,3 +26,8 @@ def get_responsive_width(window, fraction = 3.0):
     if screen: screen_width = screen.size().width()
     else: screen_width = 1920
     return round(screen_width / fraction)
+
+def get_resources_path(relative_path, base_path = None):
+    if hasattr(sys, "_MEIPASS"): return os.path.join(sys._MEIPASS, relative_path)
+    if base_path is None: base_path = os.path.dirname(__file__)
+    return os.path.join(base_path, relative_path)

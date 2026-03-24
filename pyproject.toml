@@ -1,16 +1,18 @@
 [project]
 name = "gui_utilities"
-version = "1.7.1"
+version = "1.8.0"
 description = "Personal-use graphical utilities library"
 readme = "README.md"
 license = {file = "LICENSE"}
 authors = [{name = "Guido Iván Gross", email = "grossguidoivan@gmail.com"}]
-requires-python = ">=3.8"
-dependencies = ["PyQt6", "requests"]
+requires-python = ">=3.9"
+dependencies = ["PyQt6>=6.0.0", "requests>=2.25.0"]
 
 classifiers = [
     "Programming Language :: Python :: 3",
-    "Operating System :: OS Independent",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: POSIX :: Linux",
+    "Operating System :: MacOS",
     "Intended Audience :: Developers",
     "Topic :: Software Development :: Libraries",
 ]
