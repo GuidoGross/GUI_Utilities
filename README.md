@@ -43,9 +43,10 @@ Python (3.10 or higher)
 
 Most of this library is not compatible with Google Colaboratory, since PyQt6 graphical windows cannot run in a headless environment. However, the following modules are fully compatible:
 
+- **Graphs Utilities (graphs):** the entire module.
 - **Formatting Helpers (format):** the entire module.
 - **Input Validation (validation):** the entire module except "validate_email()".
-- **System Utilities (system):** "get_resources_path()" only.
+- **System Utilities (system):** the entire module except "get_responsive_width()".
 
 ---
 
@@ -124,6 +125,7 @@ Most of this library is not compatible with Google Colaboratory, since PyQt6 gra
 
 **Helpers for interacting with the operating system graphical environment:**
 
+- **in_google_colaboratory():** checks if the runtime environment is Google Colaboratory.
 - **get_responsive_width():** calculates a responsive width based on screen size to maintain an adaptive UI.
 - **get_resources_path():** returns the absolute path to a resource file, regardless of whether the program is running as a script in an IDE or as an executable.
 

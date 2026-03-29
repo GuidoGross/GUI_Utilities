@@ -13,5 +13,5 @@ __all__ = [
     "bar_chart", "pie_chart", "histogram", "line_chart", "scatter_plot", "heat_map", "radar_chart",
     "check_if_list_is_empty", "validate_option", "validate_string", "validate_integer", "validate_double", "validate_date_time", "validate_id", "validate_cellphone_number", "validate_email",
     "decimal_format", "date_time_format", "id_format", "cellphone_number_format", "html_expression_format", "convert_to_double", "define_equality_symbol",
-    "get_responsive_width", "get_resources_path"
+    "in_google_colaboratory", "get_responsive_width", "get_resources_path"
 ]

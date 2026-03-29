@@ -1,11 +1,21 @@
 ﻿from .format import decimal_format
+from .system import in_google_colaboratory
 import matplotlib.colors as colors
 import matplotlib.pyplot as pyplot
 import numpy
 import pandas
 import os
-from PyQt6 import QtGui
+if not in_google_colaboratory(): from PyQt6 import QtGui
 from mpl_toolkits.axes_grid1 import make_axes_locatable
+
+def _configure_graph_window(manager, window_title, maximize_window, icon_path):
+    if in_google_colaboratory(): return
+    if hasattr(manager, "set_window_title"): manager.set_window_title(window_title)
+    window = getattr(manager, "window", None)
+    if window is None: return
+    if maximize_window and hasattr(window, "showMaximized"): window.showMaximized()
+    if icon_path and os.path.exists(icon_path) and hasattr(window, "setWindowIcon"):
+        window.setWindowIcon(QtGui.QIcon(icon_path))
 
 def _resolve_color_palette(color_palette, base_color, color_saturation_range, color_value_range, colors_number, continuous = False):
     def _build_color_list():
@@ -112,9 +122,7 @@ def bar_chart(
     if graph_background_color is not None: figure.set_facecolor(graph_background_color)
     manager = pyplot.get_current_fig_manager()
     window_title = window_title if window_title is not None else f"Distribución de {variable.lower()}"
-    manager.set_window_title(window_title)
-    if maximize_window: manager.window.showMaximized()
-    if icon_path and os.path.exists(icon_path): manager.window.setWindowIcon(QtGui.QIcon(icon_path))
+    _configure_graph_window(manager, window_title, maximize_window, icon_path)
     title = title if title is not None else f"Distribución de {variable.lower()}"
     axes.set_title(title, fontsize = title_font_size, fontweight = title_font_weight, pad = title_padding)
     n = len(counts)
@@ -230,9 +238,7 @@ def pie_chart(
     if graph_background_color is not None: figure.set_facecolor(graph_background_color)
     manager = pyplot.get_current_fig_manager()
     window_title = window_title if window_title is not None else f"Distribución de {variable.lower()}"
-    manager.set_window_title(window_title)
-    if maximize_window: manager.window.showMaximized()
-    if icon_path and os.path.exists(icon_path): manager.window.setWindowIcon(QtGui.QIcon(icon_path))
+    _configure_graph_window(manager, window_title, maximize_window, icon_path)
     title = title if title is not None else f"Distribución de {variable.lower()}"
     axes.set_title(title, fontsize = title_font_size, fontweight = title_font_weight, pad = title_padding)
     n = len(counts)
@@ -367,12 +373,10 @@ def histogram(
     if graph_background_color is not None: figure.set_facecolor(graph_background_color)
     manager = pyplot.get_current_fig_manager()
     window_title = window_title if window_title is not None else f"Distribución de {variable.lower()}"
-    manager.set_window_title(window_title)
-    if maximize_window: manager.window.showMaximized()
-    if icon_path and os.path.exists(icon_path): manager.window.setWindowIcon(QtGui.QIcon(icon_path))
+    _configure_graph_window(manager, window_title, maximize_window, icon_path)
     title = title if title is not None else f"Distribución de {variable.lower()}"
     axes.set_title(title, fontsize = title_font_size, fontweight = title_font_weight, pad = title_padding)
-    resolved_bins = _resolve_histogram_bins(data, bins)
+    resolved_bins = _resolve_histogram_bins(bins, data)
     counts, bins_edges, patches = axes.hist(
         data,
         bins = resolved_bins,
@@ -513,9 +517,7 @@ def line_chart(
     if graph_background_color is not None: figure.set_facecolor(graph_background_color)
     manager = pyplot.get_current_fig_manager()
     window_title = window_title if window_title is not None else f"Distribución de {variable.lower()}"
-    manager.set_window_title(window_title)
-    if maximize_window: manager.window.showMaximized()
-    if icon_path and os.path.exists(icon_path): manager.window.setWindowIcon(QtGui.QIcon(icon_path))
+    _configure_graph_window(manager, window_title, maximize_window, icon_path)
     title = title if title is not None else f"Distribución de {variable.lower()}"
     axes.set_title(title, fontsize = title_font_size, fontweight = title_font_weight, pad = title_padding)
     if show_area: axes.fill_between(x, y, color = base_color, alpha = area_alpha)
@@ -628,9 +630,7 @@ def scatter_plot(
     if graph_background_color is not None: figure.set_facecolor(graph_background_color)
     manager = pyplot.get_current_fig_manager()
     window_title = window_title if window_title is not None else f"Distribución de {variable.lower()}"
-    manager.set_window_title(window_title)
-    if maximize_window: manager.window.showMaximized()
-    if icon_path and os.path.exists(icon_path): manager.window.setWindowIcon(QtGui.QIcon(icon_path))
+    _configure_graph_window(manager, window_title, maximize_window, icon_path)
     title = title if title is not None else f"Distribución de {variable.lower()}"
     axes.set_title(title, fontsize = title_font_size, fontweight = title_font_weight, pad = title_padding)
     marker_sizes = [size * bubble_scale for size in bubble_sizes] if bubble_sizes is not None else markers_size
@@ -727,9 +727,7 @@ def heat_map(
     if graph_background_color is not None: figure.set_facecolor(graph_background_color)
     manager = pyplot.get_current_fig_manager()
     window_title = window_title if window_title is not None else f"Distribución de {variable.lower()}"
-    manager.set_window_title(window_title)
-    if maximize_window: manager.window.showMaximized()
-    if icon_path and os.path.exists(icon_path): manager.window.setWindowIcon(QtGui.QIcon(icon_path))
+    _configure_graph_window(manager, window_title, maximize_window, icon_path)
     title = title if title is not None else f"Distribución de {variable.lower()}"
     axes.set_title(title, fontsize = title_font_size, fontweight = title_font_weight, pad = title_padding)
     resolved_color_palette = _resolve_color_palette(
@@ -805,9 +803,7 @@ def radar_chart(
     if graph_background_color is not None: figure.set_facecolor(graph_background_color)
     manager = pyplot.get_current_fig_manager()
     window_title = window_title if window_title is not None else f"Distribución de {variable.lower()}"
-    manager.set_window_title(window_title)
-    if maximize_window: manager.window.showMaximized()
-    if icon_path and os.path.exists(icon_path): manager.window.setWindowIcon(QtGui.QIcon(icon_path))
+    _configure_graph_window(manager, window_title, maximize_window, icon_path)
     title = title if title is not None else f"Distribución de {variable.lower()}"
     title_padding_proportion = (title_padding / 72) / figure.get_size_inches()[1]
     title_text = figure.suptitle(title, fontsize = title_font_size, fontweight = title_font_weight, y = 1, va = "top")

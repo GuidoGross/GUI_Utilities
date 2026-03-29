@@ -1,7 +1,11 @@
-from PyQt6.QtCore import Qt
-from PyQt6.QtWidgets import QApplication
 import os
 import sys
+
+def in_google_colaboratory(): return "google.colab" in sys.modules or "ipykernel" in sys.modules
+
+if not in_google_colaboratory():
+    from PyQt6.QtCore import Qt
+    from PyQt6.QtWidgets import QApplication
 
 def _get_alignment_flag(aligment):
     if not isinstance(aligment, str): return aligment
