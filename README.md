@@ -1,4 +1,4 @@
-# **GUI Utilities**
+﻿# **GUI Utilities**
 
 Personal-use graphical utilities library providing styled PyQt6 interaction, structured menus, robust input validation, formatting helpers, and Spanish-oriented user experience.
 
@@ -21,19 +21,22 @@ Personal-use graphical utilities library providing styled PyQt6 interaction, str
 
 **Standard library modules are used where possible; only external dependencies are listed:**
 
-- PyQt6 (6.0.0 or higher)
+- PyQt6 (6.2.0 or higher)
+- matplotlib (3.5.0 or higher)
+- numpy (1.21.3 or higher)
+- pandas (1.3.4 or higher)
 - requests (2.25.0 or higher)
 
 ### **Python version**
 
-Python (3.9 or higher)
+Python (3.10 or higher)
 
 ### **Operating System**
 
 **Any of the following:**
 
 - Windows (10, version 1809 or higher)
-- Linux (any modern distribution with glibc 2.34 or higher)
+- Linux (any modern distribution with glibc 2.28 or higher)
 - MacOS (10.14 or higher)
 
 ### **Google Colaboratory support**
@@ -78,6 +81,18 @@ Most of this library is not compatible with Google Colaboratory, since PyQt6 gra
 - **information_message_box():** creates customized information dialog boxes.
 - **confirmation_message_box():** creates customized confirmation dialog boxes.
 - **confirm_exit():** creates a confirmation dialog that exits the program safely (uses confirmation_message_box()).
+
+### **Graphs Utilities (graphs)**
+
+**Helpers for creating customizable statistical and analytical charts:**
+
+- **bar_chart():** creates customizable bar charts for categorical or indexed frequency data.
+- **pie_chart():** creates customizable pie charts with color palettes generation.
+- **histogram():** creates customizable histograms with optional frequency polygon overlays and interval-based labels.
+- **line_chart():** creates customizable line charts with optional filled area display.
+- **scatter_plot():** creates customizable scatter plots, including bubble charts through variable marker sizes.
+- **heat_map():** creates customizable heat maps with color palettes generation and optional color bars.
+- **radar_chart():** creates customizable radar charts for comparing values across multiple categories.
 
 ### **Input Validation (validation)**
 
