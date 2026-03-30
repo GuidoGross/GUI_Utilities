@@ -1,10 +1,10 @@
+from .system import _get_alignment_flag, get_resources_path
+from .format import html_expression_format
 from PyQt6.QtCore import Qt, QSize, QObject, QEvent
 from PyQt6.QtWidgets import (QVBoxLayout, QHBoxLayout, QLabel, QPushButton, QLineEdit,
     QComboBox, QToolButton, QWidgetAction, QCheckBox, QScrollArea, QWidget, QSizePolicy,
     QApplication, QStyle, QStyledItemDelegate, QTableWidget, QHeaderView)
 from PyQt6.QtGui import QIcon, QTextDocument
-from .system import _get_alignment_flag, get_resources_path
-from .format import html_expression_format
 
 def menu(
     window_reference,

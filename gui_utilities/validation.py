@@ -1,9 +1,8 @@
-import re
-import math
-import requests
-from datetime import datetime
 from .dialogs import information_message_box
 from .system import get_resources_path
+import re
+import math
+from datetime import datetime
 
 _MATHEMATICAL_CONSTANTS = {
     "pi": math.pi,
@@ -100,6 +99,7 @@ def _is_in_range(value, range):
     return False
 
 def _get_tlds():
+    import requests
     url = "https://data.iana.org/TLD/tlds-alpha-by-domain.txt"
     try:
         response = requests.get(url, timeout = 10)

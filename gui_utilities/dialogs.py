@@ -1,7 +1,7 @@
-from PyQt6.QtCore import Qt
-from PyQt6.QtWidgets import QDialog, QVBoxLayout, QGridLayout, QApplication
 from .structure import label, button
 from .system import get_responsive_width
+from PyQt6.QtCore import Qt
+from PyQt6.QtWidgets import QDialog, QVBoxLayout, QGridLayout, QApplication
 import sys
 
 def information_message_box(

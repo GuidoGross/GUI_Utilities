@@ -1,12 +1,23 @@
 ﻿from .format import decimal_format
 from .system import in_google_colaboratory
-import matplotlib.colors as colors
-import matplotlib.pyplot as pyplot
-import numpy
-import pandas
 import os
-if not in_google_colaboratory(): from PyQt6 import QtGui
-from mpl_toolkits.axes_grid1 import make_axes_locatable
+
+def _get_matplotlib_modules():
+    import matplotlib.colors as colors
+    import matplotlib.pyplot as pyplot
+    return colors, pyplot
+
+def _get_numpy():
+    import numpy
+    return numpy
+
+def _get_pandas():
+    import pandas
+    return pandas
+
+def _get_make_axes_locatable():
+    from mpl_toolkits.axes_grid1 import make_axes_locatable
+    return make_axes_locatable
 
 def _configure_graph_window(manager, window_title, maximize_window, icon_path):
     if in_google_colaboratory(): return
@@ -15,9 +26,12 @@ def _configure_graph_window(manager, window_title, maximize_window, icon_path):
     if window is None: return
     if maximize_window and hasattr(window, "showMaximized"): window.showMaximized()
     if icon_path and os.path.exists(icon_path) and hasattr(window, "setWindowIcon"):
+        from PyQt6 import QtGui
         window.setWindowIcon(QtGui.QIcon(icon_path))
 
 def _resolve_color_palette(color_palette, base_color, color_saturation_range, color_value_range, colors_number, continuous = False):
+    colors, pyplot = _get_matplotlib_modules()
+    numpy = _get_numpy()
     def _build_color_list():
         if color_palette is None:
             hue, _, _ = colors.rgb_to_hsv(colors.to_rgb(base_color))
@@ -47,6 +61,8 @@ def _resolve_color_palette(color_palette, base_color, color_saturation_range, co
     return resolved_color_palette
 
 def _resolve_histogram_bins(bins, data):
+    numpy = _get_numpy()
+    pandas = _get_pandas()
     if bins != "sturges": return bins
     clean_data = pandas.Series(data).dropna().to_numpy(dtype = float)
     if len(clean_data) == 0: return bins
@@ -116,6 +132,7 @@ def bar_chart(
     layout_padding = 2.5,
     export_path = None,
 ):
+    _, pyplot = _get_matplotlib_modules()
     pyplot.style.use(style)
     pyplot.rcParams["toolbar"] = tool_bar
     figure, axes = pyplot.subplots(figsize = graph_size)
@@ -232,6 +249,7 @@ def pie_chart(
     layout_padding = 2.5,
     export_path = None,
 ):
+    _, pyplot = _get_matplotlib_modules()
     pyplot.style.use(style)
     pyplot.rcParams["toolbar"] = tool_bar
     figure, axes = pyplot.subplots(figsize = graph_size)
@@ -367,6 +385,8 @@ def histogram(
     layout_padding = 2.5,
     export_path = None,
 ):
+    _, pyplot = _get_matplotlib_modules()
+    numpy = _get_numpy()
     pyplot.style.use(style)
     pyplot.rcParams["toolbar"] = tool_bar
     figure, axes = pyplot.subplots(figsize = graph_size)
@@ -511,6 +531,7 @@ def line_chart(
     layout_padding = 2.5,
     export_path = None,
 ):
+    _, pyplot = _get_matplotlib_modules()
     pyplot.style.use(style)
     pyplot.rcParams["toolbar"] = tool_bar
     figure, axes = pyplot.subplots(figsize = graph_size)
@@ -624,6 +645,7 @@ def scatter_plot(
     layout_padding = 2.5,
     export_path = None,
 ):
+    _, pyplot = _get_matplotlib_modules()
     pyplot.style.use(style)
     pyplot.rcParams["toolbar"] = tool_bar
     figure, axes = pyplot.subplots(figsize = graph_size)
@@ -719,6 +741,8 @@ def heat_map(
     export_path = None,
     **kwargs,
 ):
+    _, pyplot = _get_matplotlib_modules()
+    make_axes_locatable = _get_make_axes_locatable()
     if "cmap" in kwargs: color_palette = kwargs.pop("cmap")
     if kwargs: raise TypeError(f"heat_map() got unexpected keyword argument(s): {", ".join(kwargs.keys())}")
     pyplot.style.use(style)
@@ -797,6 +821,8 @@ def radar_chart(
     labels_vertical_alignment = "automatic",
     export_path = None,
 ):
+    _, pyplot = _get_matplotlib_modules()
+    numpy = _get_numpy()
     pyplot.style.use(style)
     pyplot.rcParams["toolbar"] = tool_bar
     figure, axes = pyplot.subplots(figsize = graph_size, subplot_kw = {"projection": "polar"})
