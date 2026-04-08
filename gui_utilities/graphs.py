@@ -1,4 +1,4 @@
-﻿from .format import decimal_format
+from .format import decimal_format
 from .system import in_google_colaboratory
 import os
 
