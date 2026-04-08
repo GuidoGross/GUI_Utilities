@@ -1,6 +1,3 @@
-import sys
-if "-platform" not in sys.argv: sys.argv.extend(["-platform", "windows:darkmode=1"])
-
 from .core import *
 from .structure import *
 from .system import *
